@@ -1,0 +1,43 @@
+### Register a new user
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com",
+  "password": "password123",
+  "name": "Test User"
+}
+
+### Sign in to get a JWT token
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com",
+  "password": "password123"
+}
+
+### 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyQGV4YW1wbGUuY29tIiwic3ViIjoyLCJpYXQiOjE3MTY5MTUwNzMsImV4cCI6MTcxNjkxODY3M30.ujjk4ArdOzEQG_fcrKEAQBUJuQ6VndWoN_hhXBIgL9E
+ 
+### Get all users (requires authentication)
+GET http://localhost:3000/user?page=1&limit=10
+Authorization: Bearer {{token}}
+
+### Get a single user by ID (requires authentication)
+GET http://localhost:3000/user/1
+Authorization: Bearer {{token}}
+
+### Update a user by ID (requires authentication)
+PUT http://localhost:3000/user/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "email": "updateduser@example.com",
+  "name": "Updated User"
+}
+
+### Delete a user by ID (requires authentication)
+DELETE http://localhost:3000/user/1
+Authorization: Bearer {{token}}
